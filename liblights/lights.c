@@ -40,6 +40,8 @@ char const *const LCD7_FILE
 	= "/sys/class/backlight/pwm-backlight/brightness";
 char const *const LCD3_FILE
 	= "/sys/class/backlight/tps65217-bl/brightness";
+char const *const LCD4_FILE
+	= "/sys/class/backlight/backlight.11/brightness";
 
 void init_globals(void)
 {
@@ -88,15 +90,20 @@ set_light_backlight(struct light_device_t *dev,
 	brightness = ((brightness/255.0)*100);
 
 	pthread_mutex_lock(&g_lock);
-	/* Try to write to LCD7 Backlight node */
-	err = write_int(LCD7_FILE, brightness);
+	/* Try to write to LCD4 Backlight node */
+	err = write_int(LCD4_FILE, brightness);
 	if (err != 0) {
+		/* Try to write to LCD7 Backlight node */
+		err = write_int(LCD7_FILE, brightness);
 		/* LCD7 Backlight node not available, Try to write to LCD3 Backlight node */
-		err = write_int(LCD3_FILE, brightness);
-		if (err != 0)
-			/* LCD3 and LCD7 Backlight node not available */
-			ALOGI("write_int failed to open \n\t %s and %s\n",
-						LCD7_FILE, LCD3_FILE);
+		if (err != 0) {
+			err = write_int(LCD3_FILE, brightness);
+			if (err != 0) {
+				/* LCD3 and LCD7 Backlight node not available */
+				ALOGI("write_int failed to open \n\t %s, %s and %s\n",
+					LCD4_FILE, LCD7_FILE, LCD3_FILE); 
+			}
+		}
 	}
 
 	pthread_mutex_unlock(&g_lock);
