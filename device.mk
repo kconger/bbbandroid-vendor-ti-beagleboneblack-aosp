@@ -26,6 +26,23 @@ PRODUCT_COPY_FILES := \
 	device/ti/beagleboneblack/mixer_paths.xml:system/etc/mixer_paths.xml \
 	device/ti/beagleboneblack/audio_policy.conf:system/etc/audio_policy.conf
 
+# GPS
+PRODUCT_COPY_FILES += \
+	device/ti/beagleboneblack/gps.conf:system/etc/gps.conf
+
+# Bluetooth
+PRODUCT_COPY_FILES += \
+        frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml
+
+# Wifi
+PRODUCT_COPY_FILES += \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	device/ti/beagleboneblack/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+
+# PowerCape RTC
+PRODUCT_COPY_FILES += \
+	device/ti/beagleboneblack/set_time.sh:system/xbin/set_time.sh
+
 # KeyPads
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -48,6 +65,10 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Explicitly specify dpi, otherwise the icons don't show up correctly with SGX enabled
 PRODUCT_PROPERTY_OVERRIDES += \
+       wifi.interface=wlan0 \
+       wlan.driver.status=ok \
+       ro.kernel.android.gpsttybaud=9600 \
+       ro.kernel.android.gps=ttyO1 \
        ro.sf.lcd_density=160
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -73,6 +94,12 @@ PRODUCT_PACKAGES += \
         tinycap \
         tinymix \
         tinyplay
+
+PRODUCT_PACKAGES += \
+        audio.a2dp.default \
+        audio.usb.default \
+        audio.r_submix.default \
+        libaudio-resampler
 
 PRODUCT_PACKAGES += \
 	dhcpcd.conf
