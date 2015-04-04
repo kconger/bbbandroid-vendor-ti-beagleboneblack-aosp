@@ -1,0 +1,33 @@
+From c2b533c9356a5160d9699267b2d6805b797f1d14 Mon Sep 17 00:00:00 2001
+From: "[AKeith Conger" <keith.conger@gmail.com>
+Date: Mon, 30 Mar 2015 14:33:43 -0600
+Subject: [PATCH] * Fix nlink type
+
+---
+ libc/include/sys/types.h |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/libc/include/sys/types.h b/libc/include/sys/types.h
+index a0ce405..bee1329 100644
+--- a/libc/include/sys/types.h
++++ b/libc/include/sys/types.h
+@@ -59,7 +59,6 @@ typedef __kernel_id_t        id_t;
+ typedef __kernel_ino_t       ino_t;
+ typedef __kernel_key_t       key_t;
+ typedef __kernel_mode_t      mode_t;
+-typedef __kernel_nlink_t	 nlink_t;
+ #ifndef _OFF_T_DEFINED_
+ #define _OFF_T_DEFINED_
+ typedef __kernel_off_t       off_t;
+@@ -69,6 +68,8 @@ typedef loff_t               off64_t;  /* GLibc-specific */
+ 
+ typedef __kernel_pid_t		 pid_t;
+ 
++typedef __nlink_t nlink_t;
++
+ /* while POSIX wants these in <sys/types.h>, we
+  * declare then in <pthread.h> instead */
+ #if 0
+-- 
+1.7.9.5
+
