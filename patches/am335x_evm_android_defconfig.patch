@@ -1,0 +1,37 @@
+commit 1985bc0f775a5c3d2dc35449f37a1252b0264c2c
+Author: [AKeith Conger <keith.conger@gmail.com>
+Date:   Sun Feb 22 18:53:46 2015 -0700
+
+    Build in a few modules needed for bluetooth
+
+diff --git a/arch/arm/configs/am335x_evm_android_defconfig b/arch/arm/configs/am335x_evm_android_defconfig
+index bd7ea1f..b03551a 100644
+--- a/arch/arm/configs/am335x_evm_android_defconfig
++++ b/arch/arm/configs/am335x_evm_android_defconfig
+@@ -1261,7 +1261,7 @@ CONFIG_MAC80211_DEBUGFS=y
+ # CONFIG_MAC80211_DEBUG_MENU is not set
+ CONFIG_WIMAX=m
+ CONFIG_WIMAX_DEBUG_LEVEL=8
+-CONFIG_RFKILL=m
++CONFIG_RFKILL=y
+ CONFIG_RFKILL_LEDS=y
+ CONFIG_RFKILL_INPUT=y
+ CONFIG_RFKILL_REGULATOR=m
+@@ -2006,7 +2006,7 @@ CONFIG_INPUT_MISC=y
+ # CONFIG_INPUT_CM109 is not set
+ CONFIG_INPUT_TWL4030_PWRBUTTON=y
+ # CONFIG_INPUT_TWL4030_VIBRA is not set
+-CONFIG_INPUT_UINPUT=m
++CONFIG_INPUT_UINPUT=y
+ # CONFIG_INPUT_PCF8574 is not set
+ # CONFIG_INPUT_PWM_BEEPER is not set
+ CONFIG_INPUT_GPIO_ROTARY_ENCODER=m
+@@ -3213,7 +3213,7 @@ CONFIG_AC97_BUS=m
+ CONFIG_HID=y
+ CONFIG_HID_BATTERY_STRENGTH=y
+ CONFIG_HIDRAW=y
+-CONFIG_UHID=m
++CONFIG_UHID=y
+ CONFIG_HID_GENERIC=y
+ 
+ #

@@ -24,3 +24,8 @@ cd ../..
 cd system/core
 patch -p1 < ../../device/ti/beagleboneblack/patches/0008-ENGR00289825-Make-simulated-battery-status-report-ba.patch
 cd ../..
+
+# Patch kernel defaults
+cd kernel
+patch -p1 <../device/ti/beagleboneblack/patches/am335x_evm_android_defconfig.patch
+cd ..
