@@ -12,7 +12,7 @@ cd ../..
 # Bionic patch to fix nlink type
 # https://android.googlesource.com/platform/bionic.git/+/ff5b0fc8f3406c98561e17bd2a6c5433e192f5be%5E1..ff5b0fc8f3406c98561e17bd2a6c5433e192f5be/
 cd bionic
-patch -p1 < ../../device/ti/beagleboneblack/patches/0001-Fix-nlink-type.patch
+patch -p1 < ../device/ti/beagleboneblack/patches/0001-Fix-nlink-type.patch
 cd ../
 
 # Remove emulator check for bluetooth since we need qemu=1
